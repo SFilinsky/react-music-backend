@@ -30,11 +30,14 @@ module.exports = {
         'sort-keys': 'off',
         'func-style': 'off',
         'no-magic-numbers': 'warn',
+        'max-classes-per-file': 'warn',
+        'no-ternary': 'off',
         'sort-imports': 'off',
         'require-unicode-regexp': 'off',
         'class-methods-use-this': 'off',
         'init-declarations': 'off',
         'sort-vars': 'off',
+        'no-undefined': 'off',
         'prettier/prettier': ['error']
     },
 };

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { FindOperator, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from '../entites/user.entity';
 
@@ -11,5 +11,9 @@ export class UserService {
 
   getAllUsers(): Promise<UserEntity[]> {
     return this.userRepo.query('SELECT * FROM user;');
+  }
+
+  findOne(username: string): Promise<UserEntity> {
+    return this.userRepo.findOne({ where: { username } });
   }
 }

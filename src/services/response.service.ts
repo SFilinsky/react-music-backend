@@ -13,7 +13,7 @@ export class ResponseService {
     res: Response,
     options: { body?: T; status?: number; message?: string },
   ): Response<ResponseData<T>> {
-    return res.status(status ? options.status : 200).json(
+    return res.status(options.status ? options.status : 200).json(
       options.body || options.message
         ? {
             body: options.body,
@@ -28,6 +28,7 @@ export class ResponseService {
     err: Error,
     message?: string,
   ): Response<ResponseData<string>> {
+    console.error(err);
     return res.status(500).json(message ? { message } : undefined);
   }
 }

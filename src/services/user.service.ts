@@ -14,6 +14,8 @@ export class UserService {
   }
 
   findOne(username: string): Promise<UserEntity> {
-    return this.userRepo.findOne({ where: { username } });
+    return this.userRepo
+      .query(`SELECT * FROM User WHERE login = "${username}"`)
+      .then(data => data[0]);
   }
 }

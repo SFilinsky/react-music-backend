@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ResponseService } from './services/response.service';
+import { ResponseService } from './response.service';
 
 @Module({
   exports: [ResponseService],

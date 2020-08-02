@@ -1,8 +1,19 @@
-import { Body, Controller, Get, Param, Post, Res } from '@nestjs/common';
-import { UserService } from '../services/user.service';
-import { UserEntity } from '../entites/user.entity';
-import { ResponseService } from '../services/response.service';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Req,
+  Res,
+  UseGuards,
+} from '@nestjs/common';
+import { UserService } from './user.service';
+import { UserEntity } from './user.entity';
+import { ResponseService } from '../../core/response/response.service';
 import { Response } from 'express';
+import { AuthGuard } from '@nestjs/passport';
+import { AuthService } from '../../core/auth/auth.service';
 
 @Controller('users')
 export class UserController {
@@ -12,12 +23,12 @@ export class UserController {
   ) {}
 
   @Get('')
-  getAllUsers(): Promise<UserEntity[]> {
+  async getAllUsers(): Promise<UserEntity[]> {
     return this.userService.getAllUsers();
   }
 
   @Post('check')
-  checkExistence(
+  async checkExistence(
     @Body('username') username: string,
     @Res() response: Response,
   ): Promise<Response> {
@@ -26,7 +37,6 @@ export class UserController {
         return this.userService.findOne(username);
       })
       .then(user => {
-        console.log(user);
         return this.responseService.build(response, {
           body: {
             exists: Boolean(user),

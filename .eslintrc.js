@@ -38,6 +38,8 @@ module.exports = {
         'init-declarations': 'off',
         'sort-vars': 'off',
         'no-undefined': 'off',
+        "max-params": 'off',
+        "require-await": 'off',
         'prettier/prettier': ['error']
     },
 };

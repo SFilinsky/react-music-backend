@@ -45,7 +45,12 @@ export class AuthController {
 
   @UseGuards(AuthGuard('local'))
   @Post('login')
-  login(@Req() req: Request & { user: UserEntity }): { accessToken: string } {
-    return this.authService.login(req.user);
+  login(
+    @Req() req: Request & { user: UserEntity },
+  ): { accessToken: string; userInfo: { username: string; email: string } } {
+    return {
+      ...this.authService.login(req.user),
+      userInfo: { username: req.user.username, email: req.user.email },
+    };
   }
 }

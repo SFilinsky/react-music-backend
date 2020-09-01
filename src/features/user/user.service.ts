@@ -21,6 +21,12 @@ export class UserService {
       .then(data => data[0]);
   }
 
+  async findOneByEmail(email: string): Promise<UserEntity | undefined> {
+    return this.userRepo
+      .query(`SELECT * FROM user_entity WHERE email = "${email}"`)
+      .then(data => data[0]);
+  }
+
   async create(user: UserEntity): Promise<InsertResult> {
     const encrypted = { ...user };
     encrypted.password = this.encryptService.encryptPassword(

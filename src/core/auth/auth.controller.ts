@@ -24,15 +24,15 @@ export class AuthController {
 
   @Post('register')
   async register(
-    @Body() data: { login: string; password: string; email: string },
+    @Body() data: { username: string; password: string; email: string },
     @Res() response: Response,
   ): Promise<Response> {
-    const { login, password, email } = data;
+    const { username, password, email } = data;
     return Promise.resolve()
       .then(() => {
         return this.userService.create({
           id: null,
-          username: login,
+          username,
           password,
           email,
         });

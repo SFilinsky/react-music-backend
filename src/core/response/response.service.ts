@@ -8,9 +8,9 @@ export class ResponseService {
     res: Response,
     options?: { body?: T; status?: number; message?: string },
   ): Response<ResponseData<T>> {
-    let body = null,
+    let body,
       status = 200,
-      message = null;
+      message;
     if (options) {
       body = options.body ? options.body : body;
       status = options.status ? options.status : status;

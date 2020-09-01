@@ -45,4 +45,23 @@ export class UserController {
       })
       .catch(err => this.responseService.error(response, err));
   }
+
+  @Post('check-email')
+  async checkEmail(
+    @Body('email') email: string,
+    @Res() response: Response,
+  ): Promise<Response> {
+    return Promise.resolve()
+      .then(() => {
+        return this.userService.findOneByEmail(email);
+      })
+      .then(user => {
+        return this.responseService.build(response, {
+          body: {
+            exists: Boolean(user),
+          },
+        });
+      })
+      .catch(err => this.responseService.error(response, err));
+  }
 }

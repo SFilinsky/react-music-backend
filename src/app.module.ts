@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './features/user/user.module';
 import { UserEntity } from './features/user/user.entity';
 import { AuthModule } from './core/auth/auth.module';
+import { SearchModule } from './features/search/search.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { AuthModule } from './core/auth/auth.module';
       synchronize: true,
     }),
     UserModule,
+    SearchModule,
     AuthModule,
   ],
   controllers: [AppController],

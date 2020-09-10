@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { SearchController } from './search.controller';
-import { ResponseModule } from '../../response.module';
+import { ResponseModule } from '../../core/response/response.module';
 
 @Module({
   imports: [ResponseModule],
